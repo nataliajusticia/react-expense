@@ -1,5 +1,7 @@
 import Header from './components/Header';
-import ExpenseItem from './components/ExpenseItem';
+import Layout from './components/Layout';
+import ExpensesList from './components/Expenses/ExpensesList';
+import ExpenseForm from './components/Expenses/ExpenseForm';
 
 const App = () => {
   const expenses = [
@@ -31,27 +33,16 @@ const App = () => {
 
   return (
     <div className="flex flex-col min-h-screen bg-violet-50 ">
-      <main className="flex-[1_0_auto] ">
-        <Header />
+      <Header />
 
-        <div className="container max-w-screen-md p-4 mx-auto mt-8">
-          <div className="p-8 mt-8 bg-white rounded-xl">
-            <h2 className="mb-10 text-2xl font-bold text-violet-900">
-              Transaction history
-            </h2>
+      <main className="flex-[1_0_auto]">
+        <Layout>
+          <ExpenseForm />
+        </Layout>
 
-            {expenses.map((expense) => {
-              return (
-                <ExpenseItem
-                  key={expense.id}
-                  title={expense.title}
-                  amount={expense.amount}
-                  date={expense.date}
-                />
-              );
-            })}
-          </div>
-        </div>
+        <Layout>
+          <ExpensesList items={expenses} />
+        </Layout>
       </main>
     </div>
   );
