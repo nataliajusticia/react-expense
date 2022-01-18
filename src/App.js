@@ -31,13 +31,22 @@ const App = () => {
     },
   ];
 
+  const saveExpenseDataHandler = (newExpenseData) => {
+    const expenseData = {
+      ...newExpenseData,
+      id: Math.random().toString(),
+    };
+
+    console.log(expenseData);
+  };
+
   return (
-    <div className="flex flex-col min-h-screen bg-violet-50 ">
+    <div className="flex flex-col min-h-screen bg-violet-50">
       <Header />
 
-      <main className="flex-[1_0_auto]">
+      <main className="flex-[1_0_auto] pb-8">
         <Layout>
-          <ExpenseForm />
+          <ExpenseForm onSaveExpenseData={saveExpenseDataHandler} />
         </Layout>
 
         <Layout>

@@ -1,39 +1,79 @@
-const ExpenseForm = () => {
+import { useState } from 'react';
+
+const ExpenseForm = ({ onSaveExpenseData }) => {
+  const [expenseTitle, setExpenseTitle] = useState('');
+  const [expenseAmount, setExpenseAmount] = useState('');
+  const [expenseDate, setExpenseDate] = useState('');
+
+  const titleChangeHandler = (event) => {
+    setExpenseTitle(event.target.value);
+  };
+
+  const amountChangeHandler = (event) => {
+    setExpenseAmount(event.target.value);
+  };
+
+  const dateChangeHandler = (event) => {
+    setExpenseDate(event.target.value);
+  };
+
+  const submitHandler = (event) => {
+    event.preventDefault();
+
+    const expenseData = {
+      title: expenseTitle,
+      amount: expenseAmount,
+      date: new Date(expenseDate),
+    };
+
+    onSaveExpenseData(expenseData);
+
+    setExpenseTitle('');
+    setExpenseAmount('');
+    setExpenseDate('');
+  };
+
   return (
     <>
       <h2 className="mb-10 text-2xl font-bold text-violet-900">New Expense</h2>
 
-      <form>
-        <label for="title" className="block my-2 text-sm font-bold">
+      <form onSubmit={submitHandler}>
+        <label htmlFor="title" className="block my-2 text-sm font-bold">
           Title
+          <input
+            type="text"
+            id="title"
+            value={expenseTitle}
+            onChange={titleChangeHandler}
+            className="block w-full border border-gray-300 rounded-lg py-1.5 px-4"
+          />
         </label>
-        <input
-          type="text"
-          id="title"
-          className="block w-full border border-gray-300 rounded-lg py-1.5 px-4"
-        />
 
-        <label for="amount" className="block my-2 text-sm font-bold">
+        <label htmlFor="amount" className="block my-2 text-sm font-bold">
           Amount
+          <input
+            type="number"
+            id="amount"
+            min="0.01"
+            step="0.01"
+            value={expenseAmount}
+            onChange={amountChangeHandler}
+            className="block w-full border border-gray-300 rounded-lg py-1.5 px-4"
+          />
         </label>
-        <input
-          type="number"
-          id="amount"
-          min="0.01"
-          step="0.01"
-          className="block w-full border border-gray-300 rounded-lg py-1.5 px-4"
-        />
 
-        <label for="date" className="block my-2 text-sm font-bold">
+        <label htmlFor="date" className="block my-2 text-sm font-bold">
           Date
+          <input
+            type="date"
+            id="date"
+            min="2019-01-01"
+            max="2022-12-31"
+            value={expenseDate}
+            onChange={dateChangeHandler}
+            className="block w-full border border-gray-300 rounded-lg py-1.5 px-4"
+          />
         </label>
-        <input
-          type="date"
-          id="date"
-          min="2019-01-01"
-          max="2022-12-31"
-          className="block w-full border border-gray-300 rounded-lg py-1.5 px-4"
-        />
 
         <button
           type="submit"
