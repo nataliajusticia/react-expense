@@ -21,6 +21,7 @@ const ExpenseForm = ({ onSaveExpenseData }) => {
     event.preventDefault();
 
     const expenseData = {
+      id: Math.random().toString(),
       title: expenseTitle,
       amount: expenseAmount,
       date: new Date(expenseDate),
