@@ -10,6 +10,14 @@ const ExpensesList = ({ items }) => {
     setFilteredYear(selectedYear);
   };
 
+  const filteredExpenses = items.filter((expense) => {
+    return expense.date.getFullYear().toString() === filteredYear;
+  });
+
+  filteredExpenses.sort(function (a, b) {
+    return new Date(b.date) - new Date(a.date);
+  });
+
   return (
     <>
       <ExpensesFilter
@@ -21,16 +29,18 @@ const ExpensesList = ({ items }) => {
         Transaction history
       </h2>
 
-      {items.map((expense) => {
-        return (
-          <ExpenseItem
-            key={expense.id}
-            title={expense.title}
-            amount={expense.amount}
-            date={expense.date}
-          />
-        );
-      })}
+      {filteredExpenses.length > 0
+        ? filteredExpenses.map((expense) => {
+            return (
+              <ExpenseItem
+                key={expense.id}
+                title={expense.title}
+                amount={expense.amount}
+                date={expense.date}
+              />
+            );
+          })
+        : 'There is no expenses on this year.'}
     </>
   );
 };
