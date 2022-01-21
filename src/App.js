@@ -34,11 +34,22 @@ const DUMMY_EXPENSES = [
 
 const App = () => {
   const [expenses, setExpenses] = useState(DUMMY_EXPENSES);
+  const [openModal, setOpenedModal] = useState(false);
 
   const saveExpenseDataHandler = (newExpenseData) => {
     setExpenses((prevExpenses) => {
       return [newExpenseData, ...prevExpenses];
     });
+
+    setOpenedModal(false);
+  };
+
+  const modalOpenHandler = () => {
+    setOpenedModal(true);
+  };
+
+  const modalCloseHandler = () => {
+    setOpenedModal(false);
   };
 
   return (
@@ -47,7 +58,19 @@ const App = () => {
 
       <main className="flex-[1_0_auto] pb-8">
         <Layout>
-          <ExpenseForm onSaveExpenseData={saveExpenseDataHandler} />
+          {openModal === true ? (
+            <ExpenseForm
+              onSaveExpenseData={saveExpenseDataHandler}
+              onClickCloseModal={modalCloseHandler}
+            />
+          ) : (
+            <button
+              onClick={modalOpenHandler}
+              className="flex px-4 py-2 mx-auto text-sm font-medium text-white transition-colors delay-150 border border-transparent rounded-md shadow-sm bg-violet-900 hover:bg-violet-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-violet-500"
+            >
+              Add an expense
+            </button>
+          )}
         </Layout>
 
         <Layout>

@@ -1,9 +1,9 @@
 const Header = () => {
   return (
-    <header className="p-6 bg-white shadow-sm shadow-violet-200/50">
+    <header className="flex p-6 bg-white shadow-sm shadow-violet-200/50">
       <a
         href="/"
-        className="flex font-bold tracking-wider uppercase text-md text-violet-900"
+        className="inline-flex font-bold tracking-wider uppercase text-md text-violet-900"
       >
         <svg
           xmlns="http://www.w3.org/2000/svg"

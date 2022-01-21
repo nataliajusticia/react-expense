@@ -1,6 +1,6 @@
 import { useState } from 'react';
 
-const ExpenseForm = ({ onSaveExpenseData }) => {
+const ExpenseForm = ({ onSaveExpenseData, onClickCloseModal }) => {
   const [expenseTitle, setExpenseTitle] = useState('');
   const [expenseAmount, setExpenseAmount] = useState('');
   const [expenseDate, setExpenseDate] = useState('');
@@ -47,6 +47,7 @@ const ExpenseForm = ({ onSaveExpenseData }) => {
             value={expenseTitle}
             onChange={titleChangeHandler}
             className="block w-full border border-gray-300 rounded-lg py-1.5 px-4"
+            autoFocus
           />
         </label>
 
@@ -76,12 +77,20 @@ const ExpenseForm = ({ onSaveExpenseData }) => {
           />
         </label>
 
-        <button
-          type="submit"
-          className="block px-4 py-2 mt-4 text-sm font-medium text-white transition-colors delay-150 border border-transparent rounded-md shadow-sm bg-violet-900 hover:bg-violet-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-violet-500"
-        >
-          Add Expense
-        </button>
+        <div className="flex justify-end">
+          <button
+            onClick={onClickCloseModal}
+            className="inline-flex px-4 py-2 mt-4 mr-4 text-sm font-medium text-white transition-colors delay-150 border border-transparent rounded-md shadow-sm bg-violet-500 hover:bg-violet-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-violet-500"
+          >
+            Cancel
+          </button>
+          <button
+            type="submit"
+            className="inline-flex px-4 py-2 mt-4 text-sm font-medium text-white transition-colors delay-150 border border-transparent rounded-md shadow-sm bg-violet-900 hover:bg-violet-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-violet-500"
+          >
+            Add Expense
+          </button>
+        </div>
       </form>
     </>
   );
