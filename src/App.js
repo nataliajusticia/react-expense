@@ -4,6 +4,7 @@ import Header from './components/Header';
 import Layout from './components/Layout';
 import ExpensesList from './components/Expenses/ExpensesList';
 import ExpenseForm from './components/Expenses/ExpenseForm';
+import Chart from './components/Chart/Chart';
 
 const DUMMY_EXPENSES = [
   {
@@ -75,6 +76,10 @@ const App = () => {
 
         <Layout>
           <ExpensesList items={expenses} />
+        </Layout>
+
+        <Layout>
+          <Chart />
         </Layout>
       </main>
     </div>
