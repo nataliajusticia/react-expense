@@ -1,6 +1,6 @@
 const ExpenseItem = ({ title, amount, date }) => {
-  const dateDay = date.toLocaleString('de-CH', { day: '2-digit' });
-  const dateMonth = date.toLocaleString('de-CH', { month: 'long' });
+  const dateDay = date.toLocaleString('en-GB', { day: '2-digit' });
+  const dateMonth = date.toLocaleString('en-GB', { month: 'long' });
   const dateYear = date.getFullYear();
 
   return (
@@ -13,9 +13,9 @@ const ExpenseItem = ({ title, amount, date }) => {
       </div>
 
       <div className="text-sm font-semibold ">
-        {new Intl.NumberFormat('de-CH', {
+        {new Intl.NumberFormat('en-GB', {
           style: 'currency',
-          currency: 'CHF',
+          currency: 'EUR',
         }).format(amount)}
       </div>
     </div>

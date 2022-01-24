@@ -1,20 +1,21 @@
 import ChartBar from './ChartBar';
 
-const Chart = () => {
+const Chart = ({ dataPoints }) => {
+  const dataPointsValues = dataPoints.map((dataPoint) => dataPoint.value);
+  const maxValue = Math.max(...dataPointsValues);
+
   return (
     <div className="flex justify-between">
-      <ChartBar />
-      <ChartBar />
-      <ChartBar />
-      <ChartBar />
-      <ChartBar />
-      <ChartBar />
-      <ChartBar />
-      <ChartBar />
-      <ChartBar />
-      <ChartBar />
-      <ChartBar />
-      <ChartBar />
+      {dataPoints.map((dataPoint) => {
+        return (
+          <ChartBar
+            key={dataPoint.label.toLowerCase()}
+            label={dataPoint.label}
+            value={dataPoint.value}
+            maxValue={maxValue}
+          />
+        );
+      })}
     </div>
   );
 };

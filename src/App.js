@@ -2,16 +2,15 @@ import { useState } from 'react';
 
 import Header from './components/Header';
 import Layout from './components/Layout';
-import ExpensesList from './components/Expenses/ExpensesList';
+import Expenses from './components/Expenses/Expenses';
 import ExpenseForm from './components/Expenses/ExpenseForm';
-import Chart from './components/Chart/Chart';
 
 const DUMMY_EXPENSES = [
   {
     id: 1,
     title: 'Car Insurance',
     amount: 500,
-    date: new Date(2022, 0, 21),
+    date: new Date(2022, 1, 21),
   },
   {
     id: 2,
@@ -75,11 +74,7 @@ const App = () => {
         </Layout>
 
         <Layout>
-          <ExpensesList items={expenses} />
-        </Layout>
-
-        <Layout>
-          <Chart />
+          <Expenses expenses={expenses} />
         </Layout>
       </main>
     </div>
